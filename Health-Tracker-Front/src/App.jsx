@@ -1,0 +1,55 @@
+import React, { useEffect, useState } from "react";
+import { Routes, Route, useLocation, useNavigate, Navigate } from "react-router-dom";
+
+import "./css/style.css";
+import "./charts/ChartjsConfig";
+
+import Chat from "./pages/Chat";
+import Dashboard from "./pages/Dashboard";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/login" replace />;
+};
+
+function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedUserId = localStorage.getItem("userId");
+
+    if (!token) {
+      navigate("/login", { replace: true });
+    } else {
+      setUserId(storedUserId);
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo({ top: 0 });
+      document.documentElement.style.scrollBehavior = "smooth";
+    }
+  }, [location.pathname]);
+
+  return (
+    <Routes>
+      <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+      <Route path="/messages/:id" element={<ProtectedRoute><Chat userId={userId} /></ProtectedRoute>} />
+
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
+  );
+}
+
+export default App;
