@@ -13,7 +13,7 @@ namespace Auth_jwt.Data
         public string? ProfileImagePath { get; set; }
 
 		public List<Friendship> Friends { get; set; } = new();
-		public List<Post> Posts { get; set; } = new();
+		public List<ForumPost> Posts { get; set; } = new();
 		public List<StepRecord> StepRecords { get; set; } = new();
 
 		public ICollection<Message> SentMessages { get; set; } = new List<Message>();  

@@ -9,27 +9,32 @@ import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import Forum from "./pages/Forum";
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/login" replace />;
+  const location = useLocation();
+  return token ? (
+    children
+  ) : (
+    <Navigate to="/login" replace state={{ from: location }} />
+  );
 };
 
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState(localStorage.getItem("userId")); 
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedUserId = localStorage.getItem("userId");
 
-    if (!token) {
-      navigate("/login", { replace: true });
-    } else {
+  
+    if (token && storedUserId) {
       setUserId(storedUserId);
     }
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -45,7 +50,7 @@ function App() {
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/messages/:id" element={<ProtectedRoute><Chat userId={userId} /></ProtectedRoute>} />
-
+      <Route path="/forum" element={<ProtectedRoute><Forum userId={userId} /></ProtectedRoute>} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
     </Routes>

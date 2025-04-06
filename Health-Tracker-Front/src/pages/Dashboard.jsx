@@ -27,8 +27,6 @@ function Dashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    
-    // If there's no token, redirect to login page
     if (!token) {
       navigate('/login');
     }

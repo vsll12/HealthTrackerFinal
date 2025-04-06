@@ -1,122 +1,153 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Auth_jwt.Data;
+using Auth_jwt.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using System.Linq;
 using System.Threading.Tasks;
-using Auth_jwt.Data;
-using Auth_jwt.Models;
-using Microsoft.AspNetCore.Identity;
-using Auth_jwt.Dtos;
 
 namespace Auth_jwt.Controllers
 {
 	[Route("api/friends")]
 	[ApiController]
-	[Authorize] 
+	[Authorize]
 	public class FriendsController : ControllerBase
 	{
 		private readonly ApplicationDbContext _context;
-		private readonly UserManager<ApplicationUser> _userManager;
 
-		public FriendsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+		public FriendsController(ApplicationDbContext context)
 		{
 			_context = context;
-			_userManager = userManager;
 		}
 
-		[HttpGet("{userId}")]
-		public async Task<IActionResult> GetFriends(string userId)
+		[HttpGet("non-friends")]
+		public async Task<IActionResult> GetNonFriends()
 		{
-			var friends = await _context.Friendships
-				.Where(f => (f.UserId1 == userId || f.UserId2 == userId) && f.Status == FriendshipStatus.Accepted)
-				.Include(f => f.User1)
-				.Include(f => f.User2)
-				.ToListAsync();
-
-			var friendList = friends.Select(f => f.UserId1 == userId ? f.User2 : f.User1).ToList();
-
-			return Ok(friendList);
-		}
-
-		[HttpPost("request")]
-		public async Task<IActionResult> SendFriendRequest([FromBody] FriendRequestDto request)
-		{
-			var user = await _userManager.FindByIdAsync(request.UserId);
-			if (user == null)
+			var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			if (string.IsNullOrEmpty(currentUserId))
 			{
-				return NotFound("User not found");
+				return Unauthorized("User ID not found in token.");
 			}
+
+			var allUsers = await _context.Users.ToListAsync();
+			System.Console.WriteLine($"Total Users in DB: {allUsers.Count}");
+
+			var connectedUsers = await _context.Friendships
+				.Where(f => (f.UserId1 == currentUserId || f.UserId2 == currentUserId)
+							&& f.Status != FriendshipStatus.Rejected) // Exclude only Pending and Accepted
+				.Select(f => f.UserId1 == currentUserId ? f.UserId2 : f.UserId1)
+				.Distinct()
+				.ToListAsync();
+			System.Console.WriteLine($"Connected Users Count: {connectedUsers.Count}, IDs: {string.Join(", ", connectedUsers)}");
+
+			// Get users not in connectedUsers and not the current user
+			var nonFriends = await _context.Users
+				.Where(u => u.Id != currentUserId && !connectedUsers.Contains(u.Id))
+				.Select(u => new { u.Id, u.UserName })
+				.ToListAsync();
+			System.Console.WriteLine($"Non-Friends Count: {nonFriends.Count}");
+
+			return Ok(nonFriends);
+		}
+
+		[HttpGet("users")]
+		public async Task<IActionResult> GetUsers()
+		{
+			var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			var users = await _context.Users
+				.Where(u => u.Id != currentUserId)
+				.Select(u => new { u.Id, u.UserName })
+				.ToListAsync();
+			return Ok(users);
+		}
+
+		[HttpPost("follow/{userId}")]
+		public async Task<IActionResult> SendFollowRequest(string userId)
+		{
+			var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			if (currentUserId == userId) return BadRequest("Cannot follow yourself.");
 
 			var existingFriendship = await _context.Friendships
-				.FirstOrDefaultAsync(f => (f.UserId1 == request.UserId && f.UserId2 == request.FriendId) ||
-										  (f.UserId1 == request.FriendId && f.UserId2 == request.UserId));
+				.FirstOrDefaultAsync(f =>
+					(f.UserId1 == currentUserId && f.UserId2 == userId) ||
+					(f.UserId1 == userId && f.UserId2 == currentUserId));
 
-			if (existingFriendship != null)
-			{
-				return BadRequest("Friendship request already exists.");
-			}
+			if (existingFriendship != null) return BadRequest("Friendship request already exists or is accepted.");
 
 			var friendship = new Friendship
 			{
-				UserId1 = request.UserId,
-				UserId2 = request.FriendId,
+				UserId1 = currentUserId,
+				UserId2 = userId,
 				Status = FriendshipStatus.Pending
 			};
 
 			_context.Friendships.Add(friendship);
 			await _context.SaveChangesAsync();
 
-			return Ok("Friend request sent");
+			return Ok(new { message = "Follow request sent." });
 		}
 
-		[HttpPost("accept")]
-		public async Task<IActionResult> AcceptFriendRequest([FromBody] FriendRequestDto request)
+		[HttpPut("accept/{friendshipId}")]
+		public async Task<IActionResult> AcceptFollowRequest(int friendshipId)
 		{
+			var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 			var friendship = await _context.Friendships
-				.FirstOrDefaultAsync(f => f.UserId1 == request.UserId && f.UserId2 == request.FriendId && f.Status == FriendshipStatus.Pending);
+				.FirstOrDefaultAsync(f => f.Id == friendshipId && f.UserId2 == currentUserId);
 
-			if (friendship == null)
-			{
-				return NotFound("Friend request not found");
-			}
+			if (friendship == null) return NotFound("Friendship request not found.");
+			if (friendship.Status != FriendshipStatus.Pending) return BadRequest("Request already processed.");
 
 			friendship.Status = FriendshipStatus.Accepted;
-			_context.Friendships.Update(friendship);
 			await _context.SaveChangesAsync();
 
-			return Ok("Friend request accepted");
+			return Ok(new { message = "Follow request accepted." });
 		}
 
-		[HttpPost("reject")]
-		public async Task<IActionResult> RejectFriendRequest([FromBody] FriendRequestDto request)
+		[HttpGet("pending")]
+		public async Task<IActionResult> GetPendingRequests()
 		{
-			var friendship = await _context.Friendships
-				.FirstOrDefaultAsync(f => f.UserId1 == request.UserId && f.UserId2 == request.FriendId && f.Status == FriendshipStatus.Pending);
+			var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			var pending = await _context.Friendships
+				.Where(f => f.UserId2 == currentUserId && f.Status == FriendshipStatus.Pending)
+				.Include(f => f.User1)
+				.Select(f => new { f.Id, UserName = f.User1.UserName })
+				.ToListAsync();
+			return Ok(pending);
+		}
 
-			if (friendship == null)
-			{
-				return NotFound("Friend request not found");
-			}
+		[HttpGet("friends/{userId}")]
+		public async Task<IActionResult> GetFriends(string userId)
+		{
+			var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			if (userId != currentUserId) return Unauthorized();
+
+			var friends = await _context.Friendships
+				.Where(f => (f.UserId1 == userId || f.UserId2 == userId) && f.Status == FriendshipStatus.Accepted)
+				.Select(f => new
+				{
+					Id = f.UserId1 == userId ? f.UserId2 : f.UserId1,
+					Name = f.UserId1 == userId ? f.User2.UserName : f.User1.UserName
+				})
+				.ToListAsync();
+			return Ok(friends);
+		}
+
+		// Reject a follow request
+		[HttpPut("reject/{friendshipId}")]
+		public async Task<IActionResult> RejectFollowRequest(int friendshipId)
+		{
+			var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			var friendship = await _context.Friendships
+				.FirstOrDefaultAsync(f => f.Id == friendshipId && f.UserId2 == currentUserId);
+
+			if (friendship == null) return NotFound("Friendship request not found.");
+			if (friendship.Status != FriendshipStatus.Pending) return BadRequest("Request already processed.");
 
 			friendship.Status = FriendshipStatus.Rejected;
-			_context.Friendships.Update(friendship);
 			await _context.SaveChangesAsync();
 
-			return Ok("Friend request rejected");
-		}
-
-		[HttpGet("status/{userId}/{friendId}")]
-		public async Task<IActionResult> GetFriendshipStatus(string userId, string friendId)
-		{
-			var friendship = await _context.Friendships
-				.FirstOrDefaultAsync(f => (f.UserId1 == userId && f.UserId2 == friendId) || (f.UserId1 == friendId && f.UserId2 == userId));
-
-			if (friendship == null)
-			{
-				return Ok(FriendshipStatus.Pending); 
-			}
-
-			return Ok(friendship.Status);
+			return Ok(new { message = "Follow request rejected." });
 		}
 	}
 }

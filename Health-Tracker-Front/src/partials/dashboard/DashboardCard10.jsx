@@ -1,63 +1,74 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import Image01 from '../../images/user-36-05.jpg';
-import Image02 from '../../images/user-36-06.jpg';
-import Image03 from '../../images/user-36-07.jpg';
-import Image04 from '../../images/user-36-08.jpg';
-import Image05 from '../../images/user-36-09.jpg';
+const API_URL = "https://localhost:7094"; // Match your backend URL
 
 function DashboardCard10() {
+  const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [sentRequests, setSentRequests] = useState(new Set()); // Track sent requests
 
-  const customers = [
-    {
-      id: '0',
-      image: Image01,
-      name: 'Alex Shatov',
-      email: 'alexshatov@gmail.com',
-      location: '🇺🇸',
-      spent: '$2,890.66',
-    },
-    {
-      id: '1',
-      image: Image02,
-      name: 'Philip Harbach',
-      email: 'philip.h@gmail.com',
-      location: '🇩🇪',
-      spent: '$2,767.04',
-    },
-    {
-      id: '2',
-      image: Image03,
-      name: 'Mirko Fisuk',
-      email: 'mirkofisuk@gmail.com',
-      location: '🇫🇷',
-      spent: '$2,996.00',
-    },
-    {
-      id: '3',
-      image: Image04,
-      name: 'Olga Semklo',
-      email: 'olga.s@cool.design',
-      location: '🇮🇹',
-      spent: '$1,220.66',
-    },
-    {
-      id: '4',
-      image: Image05,
-      name: 'Burak Long',
-      email: 'longburak@gmail.com',
-      location: '🇬🇧',
-      spent: '$1,890.66',
-    },
-  ];
+  useEffect(() => {
+    const fetchNonFriends = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          navigate('/login');
+          return;
+        }
+
+        const response = await fetch(`${API_URL}/api/friends/non-friends`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch non-friends');
+        }
+
+        const data = await response.json();
+        setUsers(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchNonFriends();
+  }, [navigate]);
+
+  const sendFollowRequest = async (userId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_URL}/api/friends/follow/${userId}`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        console.log(`Follow request sent to user ${userId}`);
+        setSentRequests((prev) => new Set(prev).add(userId)); // Mark as sent
+        setUsers((prev) => prev.filter((user) => user.id !== userId)); // Remove from list
+      } else {
+        console.error('Failed to send follow request');
+      }
+    } catch (error) {
+      console.error('Error sending follow request:', error);
+    }
+  };
 
   return (
     <div className="col-span-full xl:col-span-6 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
       <header className="px-5 py-4 border-b border-gray-100 dark:border-gray-700/60">
-        <h2 className="font-semibold text-gray-800 dark:text-gray-100">Customers</h2>
-      </header>      
+        <h2 className="font-semibold text-gray-800 dark:text-gray-100">Users to Follow</h2>
+      </header>
       <div className="p-3">
-
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="table-auto w-full">
@@ -68,48 +79,62 @@ function DashboardCard10() {
                   <div className="font-semibold text-left">Name</div>
                 </th>
                 <th className="p-2 whitespace-nowrap">
-                  <div className="font-semibold text-left">Email</div>
-                </th>
-                <th className="p-2 whitespace-nowrap">
-                  <div className="font-semibold text-left">Spent</div>
-                </th>
-                <th className="p-2 whitespace-nowrap">
-                  <div className="font-semibold text-center">Country</div>
+                  <div className="font-semibold text-left">Action</div>
                 </th>
               </tr>
             </thead>
             {/* Table body */}
             <tbody className="text-sm divide-y divide-gray-100 dark:divide-gray-700/60">
-              {
-                customers.map(customer => {
-                  return (
-                    <tr key={customer.id}>
-                      <td className="p-2 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="w-10 h-10 shrink-0 mr-2 sm:mr-3">
-                            <img className="rounded-full" src={customer.image} width="40" height="40" alt={customer.name} />
+              {loading ? (
+                <tr>
+                  <td colSpan="2" className="p-2 text-center text-gray-500 dark:text-gray-400">
+                    Loading...
+                  </td>
+                </tr>
+              ) : error ? (
+                <tr>
+                  <td colSpan="2" className="p-2 text-center text-red-500">
+                    Error: {error}
+                  </td>
+                </tr>
+              ) : users.length === 0 ? (
+                <tr>
+                  <td colSpan="2" className="p-2 text-center text-gray-500 dark:text-gray-400">
+                    No users available to follow
+                  </td>
+                </tr>
+              ) : (
+                users.map((user) => (
+                  <tr key={user.id}>
+                    <td className="p-2 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <div className="w-10 h-10 shrink-0 mr-2 sm:mr-3">
+                          <div className="rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-800 dark:text-gray-100 font-medium">
+                            {user.userName[0]}
                           </div>
-                          <div className="font-medium text-gray-800 dark:text-gray-100">{customer.name}</div>
                         </div>
-                      </td>
-                      <td className="p-2 whitespace-nowrap">
-                        <div className="text-left">{customer.email}</div>
-                      </td>
-                      <td className="p-2 whitespace-nowrap">
-                        <div className="text-left font-medium text-green-500">{customer.spent}</div>
-                      </td>
-                      <td className="p-2 whitespace-nowrap">
-                        <div className="text-lg text-center">{customer.location}</div>
-                      </td>
-                    </tr>
-                  )
-                })
-              }
+                        <div className="font-medium text-gray-800 dark:text-gray-100">{user.userName}</div>
+                      </div>
+                    </td>
+                    <td className="p-2 whitespace-nowrap">
+                      <button
+                        onClick={() => sendFollowRequest(user.id)}
+                        disabled={sentRequests.has(user.id)}
+                        className={`btn text-xs px-3 py-1 rounded ${
+                          sentRequests.has(user.id)
+                            ? 'bg-gray-400 text-white cursor-not-allowed'
+                            : 'bg-blue-500 text-white hover:bg-blue-600'
+                        }`}
+                      >
+                        {sentRequests.has(user.id) ? 'Requested' : 'Follow'}
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
-
         </div>
-
       </div>
     </div>
   );

@@ -733,6 +733,7 @@ useEffect(() => {
                   );
                 }}
               </SidebarLinkGroup>
+
               {/* Messages */}
               <li className={`pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-linear-to-r ${pathname.includes("messages") && "from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04]"}`}>
                 <NavLink
@@ -754,6 +755,35 @@ useEffect(() => {
                 </div>
               </div>
               </NavLink>
+              </li>
+              {/* Forum */}
+              <li className={`pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-linear-to-r ${pathname.includes("messages") && "from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04]"}`}>
+            <NavLink
+              end
+              to="/forum"
+              className={`block text-gray-800 dark:text-gray-100 truncate transition duration-150 ${
+                pathname.includes("forum") ? "" : "hover:text-gray-900 dark:hover:text-white"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className="grow flex items-center">
+                  <svg
+                    className={`shrink-0 fill-current ${
+                      pathname.includes("forum") ? "text-violet-500" : "text-gray-400 dark:text-gray-500"
+                    }`}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M2 2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm1 2v6h10V4H3zm0 8h10v1H3v-1z" />
+                  </svg>
+                  <span className="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                    Forum
+                  </span>
+                </div>
+              </div>
+            </NavLink>
               </li>
               {/* Calendar */}
               <li className={`pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0 bg-linear-to-r ${pathname.includes("calendar") && "from-violet-500/[0.12] dark:from-violet-500/[0.24] to-violet-500/[0.04]"}`}>
