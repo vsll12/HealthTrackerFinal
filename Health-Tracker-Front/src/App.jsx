@@ -10,6 +10,8 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Forum from "./pages/Forum";
+import CalorieCalculator from "./components/Calculator";
+
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -53,6 +55,7 @@ function App() {
       <Route path="/forum" element={<ProtectedRoute><Forum userId={userId} /></ProtectedRoute>} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/calculator" element={<CalorieCalculator/>}/>
     </Routes>
   );
 }

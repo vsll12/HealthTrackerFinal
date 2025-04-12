@@ -1,143 +1,190 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import LineChart from "../../charts/LineChart01";
-import { chartAreaGradient } from "../../charts/ChartjsConfig";
-import EditMenu from "../../components/DropdownEditMenu";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { adjustColorOpacity, getCssVariable } from "../../utils/Utils";
 
 function DashboardCard01() {
-  const [chartData, setChartData] = useState({
-    labels: [],
-    datasets: [{
-      data: [],
-      fill: true,
-      backgroundColor: function (context) {
-        const chart = context.chart;
-        const { ctx, chartArea } = chart;
-        return chartAreaGradient(ctx, chartArea, [
-          {
-            stop: 0,
-            color: adjustColorOpacity(getCssVariable("--color-violet-500"), 0),
-          },
-          {
-            stop: 1,
-            color: adjustColorOpacity(getCssVariable("--color-violet-500"), 0.2),
-          },
-        ]);
-      },
-      borderColor: getCssVariable("--color-violet-500"),
-      borderWidth: 2,
-      pointRadius: 0,
-      pointHoverRadius: 3,
-      pointBackgroundColor: getCssVariable("--color-violet-500"),
-      pointHoverBackgroundColor: getCssVariable("--color-violet-500"),
-      pointBorderWidth: 0,
-      pointHoverBorderWidth: 0,
-      clip: 20,
-      tension: 0.2,
-    }],
-  });
-  const [showInput, setShowInput] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [weeklyData, setWeeklyData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [newSteps, setNewSteps] = useState("");
+  const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    fetchChartData();
-  }, []);
-
-  const fetchChartData = async () => {
+  const fetchWeeklySteps = async () => {
     try {
-      const response = await axios.get("https://localhost:7094/api/ChartData");
-      const data = response.data;
-      setChartData({
-        labels: data.map(item => new Date(item.date).toLocaleDateString()),
-        datasets: [{
-          ...chartData.datasets[0],
-          data: data.map(item => item.value),
-        }],
+      const response = await axios.get("https://localhost:7094/api/StepsChart", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
-    } catch (error) {
-      console.error("Error fetching data:", error);
+
+      const data = response.data;
+      const weeklyAverage =
+        data.length > 0 ? data.reduce((sum, day) => sum + day.steps, 0) / data.length : 0;
+
+      setWeeklyData({
+        steps: data,
+        weeklyAverage,
+        startDate: data[0]?.date,
+        endDate: data[data.length - 1]?.date,
+      });
+
+      // Set today's steps if available
+      const today = new Date().toDateString();
+      const todayEntry = data.find((day) => new Date(day.date).toDateString() === today);
+      setNewSteps(todayEntry ? todayEntry.steps.toString() : "");
+    } catch (err) {
+      setError(err.response?.data || "Haftalık adım verisi alınamadı.");
+      console.error("Error fetching weekly steps:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const addData = async () => {
-    if (!inputValue) return;
-  
-    try {
-      const response = await axios.post("http://localhost:7094/api/ChartData", { value: parseInt(inputValue) });
-      console.log("Data added successfully:", response.data);
-      setInputValue("");
-      setShowInput(false);
-      fetchChartData(); // Refresh the chart data
-    } catch (error) {
-      console.error("Error adding data:", error);
+  const submitSteps = async () => {
+    if (!newSteps || isNaN(newSteps) || parseInt(newSteps) < 0) {
+      setError("Lütfen geçerli bir adım sayısı girin.");
+      return;
     }
+
+    try {
+      const steps = parseInt(newSteps);
+      await axios.post(
+        "https://localhost:7094/api/StepsChart",
+        { steps },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setError(null);
+      fetchWeeklySteps(); // Refresh data after submission
+    } catch (err) {
+      setError(err.response?.data || "Adım sayısı kaydedilemedi.");
+      console.error("Error submitting steps:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchWeeklySteps();
+  }, [token]);
+
+  // Helper to format date as "DayOfWeek, DD MMM"
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("tr-TR", {
+      weekday: "long",
+      day: "numeric",
+      month: "short",
+    });
   };
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
-      <header className="flex justify-between items-start mb-2 px-5 pt-5">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
-          Acme Plus
-        </h2>
-        <EditMenu align="right" className="relative inline-flex">
-          <li>
-            <Link className="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" to="#0">
-              Option 1
-            </Link>
-          </li>
-          <li>
-            <Link className="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" to="#0">
-              Option 2
-            </Link>
-          </li>
-          <li>
-            <Link className="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" to="#0">
-              Remove
-            </Link>
-          </li>
-        </EditMenu>
+    <div className="col-span-full xl:col-span-6 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
+      <header className="px-5 py-4 border-b border-gray-100 dark:border-gray-700/60">
+        <h2 className="font-semibold text-gray-800 dark:text-gray-100">Haftalık Adım Takibi</h2>
       </header>
-      <div className="px-5">
-        <div className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-1">
-          Sales
-        </div>
-        <div className="flex items-start">
-          <div className="text-3xl font-bold text-gray-800 dark:text-gray-100 mr-2">
-            $24,780
-          </div>
-          <div className="text-sm font-medium text-green-700 px-1.5 bg-green-500/20 rounded-full">
-            +49%
-          </div>
-        </div>
-      </div>
-      <div className="grow max-sm:max-h-[128px] xl:max-h-[128px]">
-        <LineChart data={chartData} width={389} height={128} />
-      </div>
-      <div className="px-5 pb-5">
-        <button
-          onClick={() => setShowInput(!showInput)}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md mb-2"
-        >
-          {showInput ? "Cancel" : "Add Data"}
-        </button>
-        {showInput && (
-          <div className="mb-4 flex items-center gap-2">
-            <input
-              type="number"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Enter value"
-              className="border px-2 py-1 rounded-md"
-            />
-            <button
-              onClick={addData}
-              className="bg-green-500 text-white px-4 py-1 rounded-md"
-            >
-              Submit
-            </button>
-          </div>
+      <div className="p-3">
+        {isLoading ? (
+          <div className="text-center text-gray-500">Yükleniyor...</div>
+        ) : error ? (
+          <div className="text-center text-red-500">Hata: {error}</div>
+        ) : weeklyData ? (
+          <>
+            <div>
+              <header className="text-xs uppercase text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-700/50 rounded-xs font-semibold p-2">
+                Bu Hafta ({formatDate(weeklyData.startDate)} -{" "}
+                {formatDate(weeklyData.endDate)})
+              </header>
+              <ul className="my-1">
+                {weeklyData.steps.map((day, index) => (
+                  <li key={index} className="flex px-2">
+                    <div
+                      className={`w-9 h-9 rounded-full shrink-0 my-2 mr-3 ${
+                        day.steps > 0 ? "bg-green-500" : "bg-gray-200"
+                      }`}
+                    >
+                      <svg
+                        className={`w-9 h-9 fill-current ${
+                          day.steps > 0 ? "text-white" : "text-gray-400"
+                        }`}
+                        viewBox="0 0 36 36"
+                      >
+                        {day.steps > 0 ? (
+                          <path d="M18.3 11.3l-1.4 1.4 4.3 4.3H11v2h10.2l-4.3 4.3 1.4 1.4L25 18z" />
+                        ) : (
+                          <path d="M21.477 22.89l-8.368-8.367a6 6 0 008.367 8.367zm1.414-1.413a6 6 0 00-8.367-8.367l8.367 8.367zM18 26a8 8 0 110-16 8 8 0 010 16z" />
+                        )}
+                      </svg>
+                    </div>
+                    <div className="grow flex items-center border-b border-gray-100 dark:border-gray-700/60 text-sm py-2">
+                      <div className="grow flex justify-between">
+                        <div className="self-center">
+                          <span className="font-medium text-gray-800 dark:text-gray-100">
+                            {formatDate(day.date)}
+                          </span>
+                        </div>
+                        <div className="shrink-0 self-start ml-2">
+                          <span
+                            className={`font-medium ${
+                              day.steps > 0 ? "text-green-600" : "text-gray-800 dark:text-gray-100"
+                            }`}
+                          >
+                            {day.steps.toLocaleString()} adım
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+                {/* Weekly Average */}
+                <li className="flex px-2">
+                  <div className="w-9 h-9 rounded-full shrink-0 bg-violet-500 my-2 mr-3">
+                    <svg className="w-9 h-9 fill-current text-white" viewBox="0 0 36 36">
+                      <path d="M18 10a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 110-12 6 6 0 010 12z" />
+                    </svg>
+                  </div>
+                  <div className="grow flex items-center text-sm py-2">
+                    <div className="grow flex justify-between">
+                      <div className="self-center">
+                        <span className="font-medium text-gray-800 dark:text-gray-100">
+                          Haftalık Ortalama
+                        </span>
+                      </div>
+                      <div className="shrink-0 self-start ml-2">
+                        <span className="font-medium text-violet-600">
+                          {weeklyData.weeklyAverage.toFixed(2)} adım
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            {/* Daily Step Input */}
+            <div className="mt-4 px-2 flex flex-col sm:flex-row items-center gap-2">
+              <div className="text-sm text-gray-600 dark:text-gray-300">
+                Bugün ({formatDate(new Date())})
+              </div>
+              <input
+                type="number"
+                value={newSteps}
+                onChange={(e) => setNewSteps(e.target.value)}
+                placeholder="Adım sayısını girin"
+                className="px-2 py-1 border rounded text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 w-32"
+              />
+              <button
+                onClick={submitSteps}
+                className="px-3 py-1 bg-violet-500 text-white rounded text-sm hover:bg-violet-600"
+              >
+                Kaydet
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="text-center text-gray-500">Veri bulunamadı.</div>
         )}
       </div>
     </div>

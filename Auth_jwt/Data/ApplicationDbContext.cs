@@ -1,4 +1,5 @@
 ﻿using Auth_jwt.Models;
+using Auth_jwt.Models.WaterIntake;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -62,5 +63,8 @@ namespace Auth_jwt.Data
 		public DbSet<StepRecord> StepRecords { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<ForumPost> ForumPosts { get; set; }
-    }
+		public DbSet<StepData> StepData { get; set; }
+		public DbSet<WaterIntake> WaterIntakes { get; set; }
+		public DbSet<CalorieData> CalorieData { get; set; }
+	}
 }

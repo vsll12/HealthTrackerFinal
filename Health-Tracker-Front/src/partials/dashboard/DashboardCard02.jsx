@@ -1,195 +1,185 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import LineChart from '../../charts/LineChart01';
-import { chartAreaGradient } from '../../charts/ChartjsConfig';
-import EditMenu from '../../components/DropdownEditMenu';
-
-// Import utilities
-import { adjustColorOpacity, getCssVariable } from '../../utils/Utils';
-
-// Optional: Import Axios if you decide to use it for making HTTP requests
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function DashboardCard02() {
-  const [chartData, setChartData] = useState(null);
-  const [selectedDays, setSelectedDays] = useState([]);  // Store selected days
-  const [values, setValues] = useState([]);  // Store values for selected days
-  const [error, setError] = useState('');  // Error state for validation
+  const [weeklyData, setWeeklyData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [newCalories, setNewCalories] = useState("");
+  const token = localStorage.getItem("token");
 
-  // Available days of the week
-  const daysOfWeek = [
-    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
-  ];
-
-  // Function to fetch existing chart data from API
-  const fetchChartData = async () => {
+  const fetchWeeklyCalories = async () => {
     try {
-      const response = await axios.get('https://localhost:7094/api/ChartData');
+      const response = await axios.get("https://localhost:7094/api/CaloriesChart", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       const data = response.data;
+      const weeklyAverage =
+        data.length > 0 ? data.reduce((sum, day) => sum + day.calories, 0) / data.length : 0;
 
-      const formattedData = {
-        labels: data.map(item => item.dayOfWeek),
-        datasets: [
-          {
-            data: data.map(item => item.value1),
-            fill: true,
-            backgroundColor: function (context) {
-              const chart = context.chart;
-              const { ctx, chartArea } = chart;
-              return chartAreaGradient(ctx, chartArea, [
-                { stop: 0, color: adjustColorOpacity(getCssVariable('--color-violet-500'), 0) },
-                { stop: 1, color: adjustColorOpacity(getCssVariable('--color-violet-500'), 0.2) },
-              ]);
-            },
-            borderColor: getCssVariable('--color-violet-500'),
-            borderWidth: 2,
-            pointRadius: 0,
-            pointHoverRadius: 3,
-            pointBackgroundColor: getCssVariable('--color-violet-500'),
-            pointHoverBackgroundColor: getCssVariable('--color-violet-500'),
-            pointBorderWidth: 0,
-            pointHoverBorderWidth: 0,
-            clip: 20,
-            tension: 0.2,
-          },
-        ],
-      };
+      setWeeklyData({
+        calories: data,
+        weeklyAverage,
+        startDate: data[0]?.date,
+        endDate: data[data.length - 1]?.date,
+      });
 
-      setChartData(formattedData);
-    } catch (error) {
-      console.error('Error fetching chart data:', error);
+      const today = new Date().toDateString();
+      const todayEntry = data.find((day) => new Date(day.date).toDateString() === today);
+      setNewCalories(todayEntry ? todayEntry.calories.toString() : "");
+    } catch (err) {
+      setError(err.response?.data || "Haftalık kalori verisi alınamadı.");
+      console.error("Error fetching weekly calories:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // Fetch chart data on component mount
-  useEffect(() => {
-    fetchChartData();
-  }, []);
-
-  // Handle selection of days
-  const handleDaySelect = (event) => {
-    const { value } = event.target;
-    if (!selectedDays.includes(value)) {
-      setSelectedDays([...selectedDays, value]);
-      setValues([...values, '']); // Add empty value for the new day
-    } else {
-      setError('This day is already selected.');
-    }
-  };
-
-  // Handle value input for a selected day
-  const handleValueChange = (index, event) => {
-    const updatedValues = [...values];
-    updatedValues[index] = event.target.value;
-    setValues(updatedValues);
-  };
-
-  // Handle form submission to save data to API
-  const handleSubmit = async () => {
-    if (selectedDays.length === 0 || values.some(val => val === '')) {
-      setError('Please select all days and input values.');
+  const submitCalories = async () => {
+    if (!newCalories || isNaN(newCalories) || parseInt(newCalories) < 0) {
+      setError("Lütfen geçerli bir kalori miktarı girin.");
       return;
     }
 
-    const data = {
-      DaysOfWeek: selectedDays,
-      Values: values,
-    };
-
     try {
-      const response = await axios.post('https://localhost:7094/api/ChartData', data);
-      console.log('Data saved successfully:', response.data);
-      fetchChartData();  // Refresh the chart data
-    } catch (error) {
-      console.error('Error saving chart data:', error);
+      const calories = parseInt(newCalories);
+      await axios.post(
+        "https://localhost:7094/api/CaloriesChart",
+        { calories },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setError(null);
+      fetchWeeklyCalories();
+    } catch (err) {
+      setError(err.response?.data || "Kalori miktarı kaydedilemedi.");
+      console.error("Error submitting calories:", err);
     }
   };
 
+  useEffect(() => {
+    fetchWeeklyCalories();
+  }, [token]);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("tr-TR", {
+      weekday: "long",
+      day: "numeric",
+      month: "short",
+    });
+  };
+
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
-      <div className="px-5 pt-5">
-        <header className="flex justify-between items-start mb-2">
-          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">Acme Advanced</h2>
-          {/* Menu button */}
-          <EditMenu align="right" className="relative inline-flex">
-            <li>
-              <Link className="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" to="#0">
-                Option 1
-              </Link>
-            </li>
-            <li>
-              <Link className="font-medium text-sm text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 flex py-1 px-3" to="#0">
-                Option 2
-              </Link>
-            </li>
-            <li>
-              <Link className="font-medium text-sm text-red-500 hover:text-red-600 flex py-1 px-3" to="#0">
-                Remove
-              </Link>
-            </li>
-          </EditMenu>
-        </header>
-        <div className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-1">Sales</div>
-        <div className="flex items-start">
-          <div className="text-3xl font-bold text-gray-800 dark:text-gray-100 mr-2">$17,489</div>
-          <div className="text-sm font-medium text-red-700 px-1.5 bg-red-500/20 rounded-full">-14%</div>
-        </div>
-      </div>
-
-      {/* Day Selection and Value Input Form */}
-      <div className="px-5 py-5">
-        <div className="mb-4">
-          <label className="font-semibold text-gray-600">Select Days:</label>
-          <select
-            className="block w-full mt-2 border border-gray-300 rounded-lg p-2"
-            onChange={handleDaySelect}
-          >
-            <option value="">Select a day</option>
-            {daysOfWeek.map((day) => (
-              <option key={day} value={day}>
-                {day}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {selectedDays.length > 0 && (
-          <div className="mb-4">
-            <label className="font-semibold text-gray-600">Enter Values:</label>
-            {selectedDays.map((day, index) => (
-              <div key={index} className="flex items-center mb-2">
-                <span className="w-1/4">{day}</span>
-                <input
-                  type="number"
-                  value={values[index]}
-                  onChange={(event) => handleValueChange(index, event)}
-                  className="w-3/4 border border-gray-300 rounded-lg p-2"
-                  placeholder="Enter value"
-                />
+    <div className="col-span-full xl:col-span-6 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
+      <header className="px-5 py-4 border-b border-gray-100 dark:border-gray-700/60">
+        <h2 className="font-semibold text-gray-800 dark:text-gray-100">Haftalık Kalori Tüketimi</h2>
+      </header>
+      <div className="p-3">
+        {isLoading ? (
+          <div className="text-center text-gray-500">Yükleniyor...</div>
+        ) : error ? (
+          <div className="text-center text-red-500">Hata: {error}</div>
+        ) : weeklyData ? (
+          <>
+            <div>
+              <header className="text-xs uppercase text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-700/50 rounded-xs font-semibold p-2">
+                Bu Hafta ({formatDate(weeklyData.startDate)} -{" "}
+                {formatDate(weeklyData.endDate)})
+              </header>
+              <ul className="my-1">
+                {weeklyData.calories.map((day, index) => (
+                  <li key={index} className="flex px-2">
+                    <div
+                      className={`w-9 h-9 rounded-full shrink-0 my-2 mr-3 ${
+                        day.calories > 0 ? "bg-green-500" : "bg-gray-200"
+                      }`}
+                    >
+                      <svg
+                        className={`w-9 h-9 fill-current ${
+                          day.calories > 0 ? "text-white" : "text-gray-400"
+                        }`}
+                        viewBox="0 0 36 36"
+                      >
+                        {day.calories > 0 ? (
+                          <path d="M18.3 11.3l-1.4 1.4 4.3 4.3H11v2h10.2l-4.3 4.3 1.4 1.4L25 18z" />
+                        ) : (
+                          <path d="M21.477 22.89l-8.368-8.367a6 6 0 008.367 8.367zm1.414-1.413a6 6 0 00-8.367-8.367l8.367 8.367zM18 26a8 8 0 110-16 8 8 0 010 16z" />
+                        )}
+                      </svg>
+                    </div>
+                    <div className="grow flex items-center border-b border-gray-100 dark:border-gray-700/60 text-sm py-2">
+                      <div className="grow flex justify-between">
+                        <div className="self-center">
+                          <span className="font-medium text-gray-800 dark:text-gray-100">
+                            {formatDate(day.date)}
+                          </span>
+                        </div>
+                        <div className="shrink-0 self-start ml-2">
+                          <span
+                            className={`font-medium ${
+                              day.calories > 0 ? "text-green-600" : "text-gray-800 dark:text-gray-100"
+                            }`}
+                          >
+                            {day.calories} kcal
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+                <li className="flex px-2">
+                  <div className="w-9 h-9 rounded-full shrink-0 bg-violet-500 my-2 mr-3">
+                    <svg className="w-9 h-9 fill-current text-white" viewBox="0 0 36 36">
+                      <path d="M18 10a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 110-12 6 6 0 010 12z" />
+                    </svg>
+                  </div>
+                  <div className="grow flex items-center text-sm py-2">
+                    <div className="grow flex justify-between">
+                      <div className="self-center">
+                        <span className="font-medium text-gray-800 dark:text-gray-100">
+                          Haftalık Ortalama
+                        </span>
+                      </div>
+                      <div className="shrink-0 self-start ml-2">
+                        <span className="font-medium text-violet-600">
+                          {weeklyData.weeklyAverage.toFixed(2)} kcal
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-4 px-2 flex flex-col sm:flex-row items-center gap-2">
+              <div className="text-sm text-gray-600 dark:text-gray-300">
+                Bugün ({formatDate(new Date())})
               </div>
-            ))}
-          </div>
-        )}
-
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-
-        <div className="mt-4">
-          <button
-            onClick={handleSubmit}
-            className="bg-blue-500 text-white p-2 rounded-lg w-full"
-          >
-            Submit Data
-          </button>
-        </div>
-      </div>
-
-      {/* Chart built with Chart.js 3 */}
-      <div className="grow max-sm:max-h-[128px] max-h-[128px]">
-        {/* Only render the chart if chartData is available */}
-        {chartData ? (
-          <LineChart data={chartData} width={389} height={128} />
+              <input
+                type="number"
+                value={newCalories}
+                onChange={(e) => setNewCalories(e.target.value)}
+                placeholder="Kalori miktarını girin"
+                className="px-2 py-1 border rounded text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 w-32"
+              />
+              <button
+                onClick={submitCalories}
+                className="px-3 py-1 bg-violet-500 text-white rounded text-sm hover:bg-violet-600"
+              >
+                Kaydet
+              </button>
+            </div>
+          </>
         ) : (
-          <p>Loading chart data...</p>
+          <div className="text-center text-gray-500">Veri bulunamadı.</div>
         )}
       </div>
     </div>
