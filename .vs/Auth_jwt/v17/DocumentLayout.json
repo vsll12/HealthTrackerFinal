@@ -1,0 +1,525 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\HealthTracker\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\controllers\\stepschartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\controllers\\stepschartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\controllers\\calorieschartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\controllers\\calorieschartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\controllers\\waterintakecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\controllers\\waterintakecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\migrations\\20250411161042_newmodelsadded.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\migrations\\20250411161042_newmodelsadded.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\backgroundservices\\dailyresetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\backgroundservices\\dailyresetservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\dtos\\updateprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\dtos\\updateprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\dtos\\caloriedatadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\dtos\\caloriedatadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\models\\waterintake\\waterintake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\models\\waterintake\\waterintake.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\models\\waterintake\\dailysummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\models\\waterintake\\dailysummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\data\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\data\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\models\\forumpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\models\\forumpost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\models\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\models\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\controllers\\forumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\controllers\\forumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\dtos\\forumpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\dtos\\forumpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\controllers\\friendscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\controllers\\friendscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/JwtAuthDb/True/SqlTable/dbo.Friendships.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\controllers\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\controllers\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\controllers\\userauthcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\controllers\\userauthcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\migrations\\20250401162320_hubuptaded.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\migrations\\20250401162320_hubuptaded.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\models\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\models\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\dtos\\frienddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\dtos\\frienddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\migrations\\20250404193040_forumaddedtest2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\migrations\\20250404193040_forumaddedtest2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\migrations\\20250404192752_forumadded.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\migrations\\20250404192752_forumadded.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\migrations\\20250405171752_errorfound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\migrations\\20250405171752_errorfound.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|c:\\users\\dell\\desktop\\healthtracker\\auth_jwt\\migrations\\20250405171306_uodatedfp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F671944-64F0-4F75-83E8-C1E90CD67E2A}|Auth_jwt\\Auth_jwt.csproj|solutionrelative:auth_jwt\\migrations\\20250405171306_uodatedfp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "20250411161042_newModelsAdded.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250411161042_newModelsAdded.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Migrations\\20250411161042_newModelsAdded.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250411161042_newModelsAdded.cs",
+              "RelativeToolTip": "Auth_jwt\\Migrations\\20250411161042_newModelsAdded.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T16:10:43.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "WaterIntakeController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\WaterIntakeController.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Controllers\\WaterIntakeController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\WaterIntakeController.cs",
+              "RelativeToolTip": "Auth_jwt\\Controllers\\WaterIntakeController.cs",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAywHkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T15:51:09.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StepsChartController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\StepsChartController.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Controllers\\StepsChartController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\StepsChartController.cs",
+              "RelativeToolTip": "Auth_jwt\\Controllers\\StepsChartController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T15:50:34.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CaloriesChartController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\CaloriesChartController.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Controllers\\CaloriesChartController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\CaloriesChartController.cs",
+              "RelativeToolTip": "Auth_jwt\\Controllers\\CaloriesChartController.cs",
+              "ViewState": "AQIAAJQAAAAAAAAAAADwv6QAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T15:49:16.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DailyResetService.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\BackgroundServices\\DailyResetService.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\BackgroundServices\\DailyResetService.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\BackgroundServices\\DailyResetService.cs",
+              "RelativeToolTip": "Auth_jwt\\BackgroundServices\\DailyResetService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T15:48:47.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UpdateProfileDto.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Dtos\\UpdateProfileDto.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Dtos\\UpdateProfileDto.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Dtos\\UpdateProfileDto.cs",
+              "RelativeToolTip": "Auth_jwt\\Dtos\\UpdateProfileDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T15:47:07.081Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CalorieDataDto.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Dtos\\CalorieDataDto.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Dtos\\CalorieDataDto.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Dtos\\CalorieDataDto.cs",
+              "RelativeToolTip": "Auth_jwt\\Dtos\\CalorieDataDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T15:45:24.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "WaterInTake.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\WaterInTake\\WaterInTake.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Models\\WaterInTake\\WaterInTake.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\WaterInTake\\WaterInTake.cs",
+              "RelativeToolTip": "Auth_jwt\\Models\\WaterInTake\\WaterInTake.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T15:43:36.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DailySummary.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\WaterInTake\\DailySummary.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Models\\WaterInTake\\DailySummary.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\WaterInTake\\DailySummary.cs",
+              "RelativeToolTip": "Auth_jwt\\Models\\WaterInTake\\DailySummary.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T15:43:05.84Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "20250405171752_errorFound.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250405171752_errorFound.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Migrations\\20250405171752_errorFound.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250405171752_errorFound.cs",
+              "RelativeToolTip": "Auth_jwt\\Migrations\\20250405171752_errorFound.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAzwAsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T17:17:52.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "RegisterModel.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\RegisterModel.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Models\\RegisterModel.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\RegisterModel.cs",
+              "RelativeToolTip": "Auth_jwt\\Models\\RegisterModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T17:14:10.609Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "20250405171306_uodatedFp.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250405171306_uodatedFp.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Migrations\\20250405171306_uodatedFp.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250405171306_uodatedFp.cs",
+              "RelativeToolTip": "Auth_jwt\\Migrations\\20250405171306_uodatedFp.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-05T17:13:06.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Auth_jwt\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Auth_jwt\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-05T16:36:52.354Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "20250404193040_forumAddedTest2.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250404193040_forumAddedTest2.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Migrations\\20250404193040_forumAddedTest2.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250404193040_forumAddedTest2.cs",
+              "RelativeToolTip": "Auth_jwt\\Migrations\\20250404193040_forumAddedTest2.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T19:30:40.717Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ForumController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\ForumController.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Controllers\\ForumController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\ForumController.cs",
+              "RelativeToolTip": "Auth_jwt\\Controllers\\ForumController.cs",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAYwGkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T19:28:31.355Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "20250404192752_ForumAdded.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250404192752_ForumAdded.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Migrations\\20250404192752_ForumAdded.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250404192752_ForumAdded.cs",
+              "RelativeToolTip": "Auth_jwt\\Migrations\\20250404192752_ForumAdded.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T19:27:53.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Auth_jwt\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAADoAAAAAAAAAAAAwwEMAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T19:26:59.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ForumPostDto.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Dtos\\ForumPostDto.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Dtos\\ForumPostDto.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Dtos\\ForumPostDto.cs",
+              "RelativeToolTip": "Auth_jwt\\Dtos\\ForumPostDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T19:26:16.572Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ForumPost.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\ForumPost.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Models\\ForumPost.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\ForumPost.cs",
+              "RelativeToolTip": "Auth_jwt\\Models\\ForumPost.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAmwAoAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T19:24:47.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "LoginModel.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\LoginModel.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Models\\LoginModel.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\LoginModel.cs",
+              "RelativeToolTip": "Auth_jwt\\Models\\LoginModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T15:49:13.528Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "dbo.Friendships [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/JwtAuthDb/True/SqlTable/dbo.Friendships.sql",
+              "ToolTip": "dbo.Friendships [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-04T15:48:52.609Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UserAuthController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\UserAuthController.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Controllers\\UserAuthController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\UserAuthController.cs",
+              "RelativeToolTip": "Auth_jwt\\Controllers\\UserAuthController.cs",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T15:27:07.591Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\ProfileController.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Controllers\\ProfileController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\ProfileController.cs",
+              "RelativeToolTip": "Auth_jwt\\Controllers\\ProfileController.cs",
+              "ViewState": "AQIAAEEAAAAAAAAAAAAgwGUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T15:26:55.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "20250401162320_hubUptaded.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250401162320_hubUptaded.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Migrations\\20250401162320_hubUptaded.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Migrations\\20250401162320_hubUptaded.cs",
+              "RelativeToolTip": "Auth_jwt\\Migrations\\20250401162320_hubUptaded.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T16:23:20.938Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Message.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\Message.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Models\\Message.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Models\\Message.cs",
+              "RelativeToolTip": "Auth_jwt\\Models\\Message.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T15:58:22.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Hubs\\ChatHub.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "Auth_jwt\\Hubs\\ChatHub.cs",
+              "ViewState": "AQIAAAgBAAAAAAAAAAAgwAwBAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T15:52:20.694Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "FriendDto.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Dtos\\FriendDto.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Dtos\\FriendDto.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Dtos\\FriendDto.cs",
+              "RelativeToolTip": "Auth_jwt\\Dtos\\FriendDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T15:44:31.627Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Data\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Data\\ApplicationUser.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Data\\ApplicationUser.cs",
+              "RelativeToolTip": "Auth_jwt\\Data\\ApplicationUser.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAxwAkAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T15:41:19.362Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "FriendsController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\FriendsController.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Controllers\\FriendsController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\FriendsController.cs",
+              "RelativeToolTip": "Auth_jwt\\Controllers\\FriendsController.cs",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAmwE4AAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T15:40:43.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "MessagesController.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\MessagesController.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Controllers\\MessagesController.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Controllers\\MessagesController.cs",
+              "RelativeToolTip": "Auth_jwt\\Controllers\\MessagesController.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAAwCoAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T15:38:16.783Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Program.cs",
+              "RelativeDocumentMoniker": "Auth_jwt\\Program.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\HealthTracker\\Auth_jwt\\Program.cs",
+              "RelativeToolTip": "Auth_jwt\\Program.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAYwBkAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T15:17:12.022Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
